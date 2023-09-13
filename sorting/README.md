@@ -61,7 +61,7 @@ Well-known unstable sorts
 - Worst case complexity: O(n^2)
 - Space complexity: O(1)
 
-## Write a program to implement bubble sort
+
 The BubbleSort compares each successive pair of elements in an unordered list and inverts the elements if they
 are not in order.The bubble sort uses a straightforward logic that works by repeating swapping the adjacent elements if they are not in the right order. It compares one pair at a time and swaps if the first element is greater than the second element; otherwise, move further to the next pair of elements for comparison.
 
