@@ -1,1 +1,1 @@
-# This repository contains the core concepts of Data Structure Algorithms using Python. 
+# This repository contains the implementation of Data Structure Algorithms using Python.
