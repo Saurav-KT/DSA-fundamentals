@@ -42,6 +42,7 @@ from collections import deque
 # print(obj.pick_top_item())
 # print(obj.size())
 
+# Approach-2 stack implementation using dequeue
 class Stack:
     def __init__(self):
         self.stack= deque()
