@@ -67,7 +67,7 @@ class Stack(object):
 # s.push(20)
 # s.push(30)
 # s.display()
-# print("Top item of the stack",s.pick_top_item())
+# print("Top item of the stack",s.peek())
 # print("total count",s.size())
 
 
