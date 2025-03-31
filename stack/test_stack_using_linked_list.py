@@ -30,9 +30,9 @@ class TestStack(unittest.TestCase):
             self.assertEqual(self.stack.peek(),30)
             self.assertEqual(self.stack.pop(),30)
             self.assertEqual(self.stack.peek(),20)
-            self.assertEqual(self.stack.is_empty(), False)
+            self.assertTrue(self.stack.is_empty(), False)
             self.assertEqual(self.stack.pop(),20)
-            self.assertEqual(self.stack.is_empty(),True)
+            self.assertTrue(self.stack.is_empty(),True)
 
             print('Success: test_end_to_end')
 
