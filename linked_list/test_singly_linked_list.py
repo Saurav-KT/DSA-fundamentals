@@ -14,8 +14,6 @@ class TestLinkedList(unittest.TestCase):
        # Test: insert at_beginning on a None
         linked_list.insert_at_beginning(None)
         self.assertEqual(linked_list.display_all(), [10,5])
-
-
     def test_insert_at_end(self):
         print('Test: insert_at_end')
         linked_list= SingleLinkedList()
@@ -66,14 +64,58 @@ class TestLinkedList(unittest.TestCase):
         data = linked_list.search_element(40)
         self.assertEqual(data, None)
 
+    def test_delete_at_beginning(self):
+        linked_list = SingleLinkedList()
+
+        # Test deletion on empty list (should raise error)
+        with self.assertRaises(IndexError):
+            linked_list.delete_at_beginning()
+
+        # Test deletion with single node
+        linked_list.insert_at_beginning(10)
+        deleted_data = linked_list.delete_at_beginning()
+        self.assertEqual(deleted_data, 10)
+        self.assertIsNone(linked_list.head)  # List should now be empty
+
+        # Test deletion with multiple nodes
+        linked_list.insert_at_beginning(20)
+        linked_list.insert_at_beginning(30)
+        deleted_data = linked_list.delete_at_beginning()
+        self.assertEqual(deleted_data, 20)
+        self.assertEqual(linked_list.head.data, 30)  # New head should be 30
+
+    def test_delete_at_end(self):
+        linked_list = SingleLinkedList()
+        # Test deletion on empty list (should raise error)
+        with self.assertRaises(IndexError):
+            linked_list.delete_at_end()
+
+        # Test deletion with single node
+        linked_list.insert_at_beginning(10)
+        deleted_data = linked_list.delete_at_end()
+        self.assertEqual(deleted_data, 10)
+        self.assertIsNone(linked_list.head)  # List should now be empty
+
+        # Test deletion with multiple node
+        linked_list.insert_at_beginning(10)
+        linked_list.insert_at_beginning(20)
+        linked_list.insert_at_beginning(30)
+        linked_list.insert_at_end(50)
+        deleted_data = linked_list.delete_at_end()
+        self.assertEqual(deleted_data, 50)
+        self.assertEqual(linked_list.display_all(), [30, 20,10])
+
+
+
 
 
 
 
 def main():
     test=TestLinkedList()
-    test.test_insert_at_beginning()
-    test.test_insert_at_end()
-    test.test_insert_at_middle()
+    test.test_delete_at_end()
+    # test.test_insert_at_beginning()
+    # test.test_insert_at_end()
+    # test.test_insert_at_middle()
 if __name__ == '__main__':
     main()

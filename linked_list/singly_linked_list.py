@@ -69,12 +69,12 @@ class SingleLinkedList:
         # Check for invalid negative position
 
         if position < 0:
-          raise IndexError("Position out of bound")
+          raise IndexError("Position cannot be negative")
 
         # Insert at the beginning if position is 0
         if position == 0:
             self.insert_at_beginning(data)
-            return
+            return self.head
 
         # Cannot insert at a non-zero position in an empty list
         if self.head is None:
@@ -83,17 +83,12 @@ class SingleLinkedList:
         # Traverse to the node just before the target position
         temp= self.head
         for _ in range(1,position-1):
-            if temp is None:
-                break
+            if temp.next is None:
+                raise IndexError("Position exceeds list length")
             temp= temp.next
 
-        # if position is greater number of nodes
-        if temp is None:
-            raise IndexError("Position out of bound")
-
-        # Create and insert the new node
+        # Insert new node
         np = Node(data)
-        np.data= data
         np.next= temp.next
         temp.next= np
         return self.head
@@ -121,29 +116,162 @@ class SingleLinkedList:
                     temp= temp.next
                 return data
 
+    def delete_at_beginning(self):
+        """
+           Deletes the first node (head) of the linked list.
+
+           Returns:
+               The data of the deleted node (if successful).
+
+           Raises:
+               IndexError: If the list is empty.
+           """
+
+        if self.head is None:
+            raise IndexError("Cannot delete from an empty list")
+        deleted_data= self.head.data # Store data before deletion
+        # Case 1: Only one node (head.next is None)
+        if self.head.next is None:
+            self.head= None
+        else:
+            self.head = self.head.next
+
+        return deleted_data
+
+    def delete_at_end(self):
+        """
+                 Deletes the last node (tail) of the linked list.
+                 Returns:
+                     The deleted node's data if successful.
+                 Raises:
+                      IndexError: If the list is empty.
+                 """
+        # Case 1: Empty list → Raise error
+        if self.head is None:
+            raise IndexError("Cannot delete from an empty list")
+
+        # Case 2: Single-node list → Delete head
+        if self.head.next is None:
+            deleted_data= self.head.data
+            self.head= None
+            return deleted_data
+
+        # Case 3: Multi-node list → Traverse to the second-last node
+        temp= self.head.next
+        prev= self.head
+        while temp.next:
+            temp= temp.next
+            prev= prev.next
+        deleted_data= temp.data
+        prev.next= None
+        return deleted_data
+
+    def delete_at_position(self,position):
+        """
+        delete a new node with the given data at the specified position in the linked list.
+        Args:
+            position (int): The index where the specific node should be deleted (0-based).
+            Raises:
+            IndexError: If the position is negative, exceeds the list length, or the list is empty (for non-zero positions).
+        """
+
+        # Case 1: Empty list
+
+        if position < 0:
+            raise IndexError("Position cannot be negative")
+
+        # Case 2: Delete head node (handles both single-node and multi-node cases)
+        if self.head is None:
+            raise IndexError("Cannot delete from an empty list")
+
+        deleted_data = None
+
+        # Case 3: Delete the first node (position = 0)
+        if position == 0:
+            deleted_data = self.head.data
+            self.head = self.head.next
+            return deleted_data
+
+        # Case 4: Traverse to the node before the target position
+        prev = None
+        current = self.head
+        current_pos = 0
+
+        while current is not None and current_pos < position:
+            prev = current
+            current = current.next
+            current_pos += 1
+
+        # If position exceeds list length
+        if current is None:
+            raise IndexError("Position exceeds list length")
+
+        # Delete the node at the target position
+
+        prev.next= current.next
+        return deleted_data
+
+    def delete_by_specific_value(self, value):
+
+        #  Case 1: Empty list
+        if self.head is None:
+            raise IndexError("Cannot delete from an empty list")
+
+        # Case 2: Delete head node (handles both single-node and multi-node cases)
+        if self.head.data==value:
+            deleted_data= self.head.data
+            self.head= self.head.next
+            return deleted_data
+
+        # Case 4:  # Traverse the list to find the node with the target value
+        current = self.head
+        prev= None
+        while current:
+            if current.data == value:
+                deleted_data= current.data
+                # Adjust the pointers to skip the node with the target value
+                prev.next = current.next
+                return deleted_data
+
+            prev = current
+            current = current.next
+
+            # Value not found
+        raise ValueError(f"Value {value} not found in the list")
 
 
 
 
 # L= SingleLinkedList()
-# n= Node(10)
-# L.head= n
-# n1= Node(20)
-# # L.head.next= n1
-# n.next=n1
-# n2= Node(30)
-# n1.next= n2
-# n3= Node(40)
+# n1= Node(10)
+# L.head= n1
+# n2= Node(20)
+# L.head.next= n2
+# n1.next=n2
+# n3= Node(30)
 # n2.next= n3
-# n4= Node(50)
+# n4= Node(40)
 # n3.next= n4
+# L.insert_at_beginning(50)
+# delete_data = L.delete_at_end()
+# print(delete_data)
+# print(L.display_all())
+# print(L.delete_by_specific_value(100))
+# print(L.delete_at_position(6))
+# print(L.display_all())
+
+# L.delete_at_end()
+# print(L.display_all())
+# L.delete_at_beginning()
+# print(L.display_all())
+
 
 
 # L.insert_at_beginning(5)
 # L.insert_at_beginning(3)
 # L.insert_at_end(80)
 # L.insert_at_end(100)
-# L.insert_at_specific_position(4,25)
+# L.insert_at_specific_position(-1,25)
 # L.insert_at_specific_position(10,35)
 # print(L.display_all())
 
