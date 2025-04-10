@@ -174,19 +174,17 @@ class SingleLinkedList:
             Raises:
             IndexError: If the position is negative, exceeds the list length, or the list is empty (for non-zero positions).
         """
-
-        # Case 1: Empty list
-
+        # Case 1: check negative position
         if position < 0:
             raise IndexError("Position cannot be negative")
 
-        # Case 2: Delete head node (handles both single-node and multi-node cases)
+        # Case 2: Empty list
         if self.head is None:
             raise IndexError("Cannot delete from an empty list")
 
         deleted_data = None
 
-        # Case 3: Delete the first node (position = 0)
+        # Case 3: Delete head node (handles both single-node and multi-node cases)
         if position == 0:
             deleted_data = self.head.data
             self.head = self.head.next
@@ -239,19 +237,50 @@ class SingleLinkedList:
             # Value not found
         raise ValueError(f"Value {value} not found in the list")
 
+    def update_the_value_at_specific_position(self,position,value):
+        # Case 1: check negative position
+        if position < 0:
+            raise IndexError("Position cannot be negative")
+
+        # Case 2: Empty list
+        if self.head is None:
+            raise IndexError("Cannot update an empty list")
 
 
+        # Case 3: Update head node (handles both single-node and multi-node cases)
+        if position == 0:
+            updated_data = self.head.data
+            self.head.data = value
+            return updated_data
 
-# L= SingleLinkedList()
-# n1= Node(10)
-# L.head= n1
-# n2= Node(20)
-# L.head.next= n2
-# n1.next=n2
-# n3= Node(30)
-# n2.next= n3
-# n4= Node(40)
-# n3.next= n4
+        # Case 4: Traverse to the node before the target position
+        current = self.head
+        current_pos = 0
+        while current is not None and current_pos < position:
+            current = current.next
+            current_pos += 1
+
+        # If position exceeds list length
+        if current is None:
+            raise IndexError("Position exceeds list length")
+
+        updated_data= current.data
+        current.data= value
+        return updated_data
+
+
+L= SingleLinkedList()
+n1= Node(10)
+L.head= n1
+n2= Node(20)
+L.head.next= n2
+n1.next=n2
+n3= Node(30)
+n2.next= n3
+n4= Node(40)
+n3.next= n4
+L.update_the_value_at_specific_position(2,100)
+print(L.display_all())
 # L.insert_at_beginning(50)
 # delete_data = L.delete_at_end()
 # print(delete_data)
