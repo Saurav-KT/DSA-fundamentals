@@ -57,10 +57,6 @@ class SingleLinkedList:
                  temp= temp.next
 
 
-
-
-
-
 L=SingleLinkedList()
 n1= Node(10)
 L.head= n1

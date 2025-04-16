@@ -268,6 +268,27 @@ class SingleLinkedList:
         current.data= value
         return updated_data
 
+    def reverse_linked_list(self):
+        prev= None
+        current= self.head
+        while current is not None:
+            next_node= current.next
+            current.next=prev
+            prev= current
+            current= next_node
+
+        self.head= prev
+
+    def count_nodes(self):
+        if self.head is None:
+            raise "Linked list is empty"
+        temp= self.head
+        count=0
+        while temp:
+            count+=1
+            temp= temp.next
+        return count
+
 
 L= SingleLinkedList()
 n1= Node(10)
@@ -279,8 +300,11 @@ n3= Node(30)
 n2.next= n3
 n4= Node(40)
 n3.next= n4
-L.update_the_value_at_specific_position(2,100)
+# L.update_the_value_at_specific_position(2,100)
 print(L.display_all())
+L.reverse_linked_list()
+print(L.display_all())
+# print(L.count_nodes())
 # L.insert_at_beginning(50)
 # delete_data = L.delete_at_end()
 # print(delete_data)
