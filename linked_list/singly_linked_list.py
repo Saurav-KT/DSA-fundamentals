@@ -268,15 +268,22 @@ class SingleLinkedList:
         current.data= value
         return updated_data
 
+
     def reverse_linked_list(self):
         prev= None
         current= self.head
-        while current is not None:
+        while current:
+            # Save the next node before we change current.next
             next_node= current.next
+
+            # Reverse the current node's pointer
             current.next=prev
+
+            # Move prev and current one step forward
             prev= current
             current= next_node
 
+        # At the end, prev will be pointing to the new head
         self.head= prev
 
     def count_nodes(self):
@@ -293,11 +300,14 @@ class SingleLinkedList:
 L= SingleLinkedList()
 n1= Node(10)
 L.head= n1
+
 n2= Node(20)
 L.head.next= n2
 n1.next=n2
+
 n3= Node(30)
 n2.next= n3
+
 n4= Node(40)
 n3.next= n4
 # L.update_the_value_at_specific_position(2,100)

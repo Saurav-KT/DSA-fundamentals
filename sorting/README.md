@@ -26,8 +26,8 @@ most T(n).
 ```
 
 ## Stability in sorting
-Stability in sorting means whether a sort algorithm maintains the relative order of the equals keys of the original
-input in the result output.
+Stability in sorting means whether a sort algorithm maintains the relative order of the 
+equals keys of the original input in the result output.
 So a sorting algorithm is said to be stable if two objects with equal keys appear in the same order in sorted output
 as they appear in the input unsorted array.
 
@@ -47,7 +47,7 @@ Well-known stable sorts:
 - Insertion sort
 - Radix sort
 - Tim sort
-- Bubble Sor
+- Bubble Sort
 
 Well-known unstable sorts
 - Heap sort
