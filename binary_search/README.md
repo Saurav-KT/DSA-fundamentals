@@ -32,7 +32,8 @@ Remaining:
 
 Middle = 23
 Is 27 > 23?
-✔ Yes → ignore half again (4 elements)
+
+Yes → ignore half again (4 elements)
 
 Step 3
 Remaining:
@@ -62,12 +63,13 @@ mid= low+ (high-low)//2
 
 Monotonic Property
 Binary search only works if the search space has this property:
+
 Once a condition becomes true (or false), it stays that way.
 
 **Examples:**
 
-Sorted array
-First failing test
-Minimum capacity that works
-Earliest valid timestamp
-Without this, you can’t safely discard half.
+* Sorted array
+* First failing test
+* Minimum capacity that works
+* Earliest valid timestamp
+* Without this, you can’t safely discard half.
