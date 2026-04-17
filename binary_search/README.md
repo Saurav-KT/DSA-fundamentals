@@ -72,4 +72,5 @@ Once a condition becomes true (or false), it stays that way.
 * First failing test
 * Minimum capacity that works
 * Earliest valid timestamp
-* Without this, you can’t safely discard half.
+
+Without this, you can’t safely discard half.
