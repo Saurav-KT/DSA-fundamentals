@@ -6,10 +6,12 @@ def lower_bound(arr, target):
         mid= (low + high)//2
         if arr[mid]>= target:
             ans= mid
+            # look for more small index on left
             high= mid-1
         else:
-            low= mid+1
+            low= mid+1 # look for right
     return ans
+
 def upper_bound(arr, target):
     low=0
     high= len(arr)-1
