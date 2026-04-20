@@ -22,9 +22,10 @@ def upper_bound(arr, target):
             ans= mid
             high= mid-1
         else:
-                low= mid+1
+            low= mid+1
     return ans
 
 lst = [1,2,4,5]
-target=4
+target=8
 print(upper_bound(lst, target))
+
