@@ -1,0 +1,36 @@
+class Solution:
+
+    # Helper function to reverse array between two indices
+    def reverse(self, nums: list[int], left: int, right: int):
+        while left < right:
+            nums[left], nums[right] = nums[right], nums[left]
+            left += 1
+            right -= 1
+
+    # Function to rotate array left by k steps
+    def rotate(self, nums, k):
+        n = len(nums)
+
+        #edge cases no rotation needed
+        if n == 0 or k == 0:
+           return nums
+
+        # normalize k if it's larger than n
+        k = k % n
+
+        # reverse the first k elements
+        self.reverse(nums, 0, k - 1)
+
+        # reverse remaining n-k elements
+        self.reverse(nums, k, n - 1)
+
+        # reverse entire array
+        self.reverse(nums, 0, n - 1)
+
+        return nums
+
+if __name__ == "__main__":
+    arr = [1, 2, 3, 4, 5, 6, 7]
+    obj = Solution()
+    obj.rotate(nums=arr, k=3)
+    print(arr)
